@@ -1,0 +1,153 @@
+@charset "utf-8";
+
+@font-face {
+ font-family: 'GP'; font-weight: 500;
+ src: url('/fonts/GothamPro/normal.eot?') format('eot'),
+ url('/fonts/GothamPro/normal.otf') format('opentype'),
+ url('/fonts/GothamPro/normal.woff') format('woff'),
+ url('/fonts/GothamPro/normal.ttf') format('truetype'),
+ url('/fonts/GothamPro/normal.svg#GothamPro') format('svg');
+}
+@font-face {
+ font-family: 'GP'; font-weight: 600;
+ src: url('/fonts/GothamPro/medium.eot?') format('eot'),
+ url('/fonts/GothamPro/medium.otf') format('opentype'),
+ url('/fonts/GothamPro/medium.woff') format('woff'),
+ url('/fonts/GothamPro/medium.ttf') format('truetype'),
+ url('/fonts/GothamPro/medium.svg#GothamPromedium') format('svg');
+}
+@font-face {
+ font-family: 'GP'; font-weight: 700;
+ src: url('/fonts/GothamPro/bold.eot?') format('eot'),
+ url('/fonts/GothamPro/bold.otf') format('opentype'),
+ url('/fonts/GothamPro/bold.woff') format('woff'),
+ url('/fonts/GothamPro/bold.ttf') format('truetype'),
+ url('/fonts/GothamPro/bold.svg#GothamProbold') format('svg');
+}
+@font-face {
+ font-family: 'GP'; font-weight: 800;
+ src: url('/fonts/GothamPro/bolder.eot?') format('eot'),
+ url('/fonts/GothamPro/bolder.otf') format('opentype'),
+ url('/fonts/GothamPro/bolder.woff') format('woff'),
+ url('/fonts/GothamPro/bolder.ttf') format('truetype'),
+ url('/fonts/GothamPro/bolder.svg#GothamProbold') format('svg');
+}
+
+:root{
+ --transition: all 0.4s ease 0s;
+ --color-yellow-one: rgb(250, 195, 10);
+ --shadow: 0 0 1rem rgba(0, 0, 0, 1);
+ --width-one: 150rem
+}
+
+HTML{
+ font-family: 'GP', sans-serif; font-size: 10px; font-weight: 500;
+ /*hyphens: auto*/
+}
+
+Body{ font-size: 1.8em }
+
+
+Body > Header{
+ background-position: center center; background-repeat: no-repeat; background-size: cover;
+ margin-bottom: 2rem;
+ padding: 4rem
+}
+Body > Header A{ text-decoration: none }
+Body > Header H1{
+ color: white;
+ font-size: 10rem;
+ text-shadow: var(--shadow); text-transform: uppercase;
+}
+Body > Header H1 B{ color: var(--color-yellow-one) }
+
+
+Body > Main{ display: flex; justify-content: center; align-items: center }
+Body > Main > Section,
+Body > Main > Article{ padding-top: 1rem; padding-bottom: 1rem }
+
+Body > Main P{ line-height: 1.4 }
+Body > Main P:not(:last-of-type){ margin-bottom: 1rem }
+
+
+Article > Section:not(:last-of-type){ margin-bottom: 6rem }
+Article H2{
+ font-size: 6.2rem; font-weight: 700;
+ margin-bottom: 4rem
+}
+
+
+Input{ border-radius: 0.4rem }
+
+Button{
+ background-color: var(--color-yellow-one);
+ border: 1px solid var(--color-yellow-one);
+ font-size: 0.8em; font-weight: bold;
+ padding: 2rem
+}
+Button:hover{ backgound-color: white }
+
+
+/* < */
+Body > Footer > Section > Div{
+ display: flex; justify-content: space-between;
+ margin: 0 auto;
+ padding: 5rem 1rem
+}
+
+Body > Footer > Section > Div > Div:first-child{
+ color: rgb(145, 145, 145);
+ font-size: 1.2rem;
+ margin-right: 4rem
+}
+Body > Footer > Section > Div > Div:first-child > P{ margin-bottom: 1.5rem }
+
+
+Body > Footer > Section > Div > Div:last-child{ display: flex; flex-direction: column; justify-content: space-between; align-items: flex-end; flex-grow: 1 }
+
+Body > Footer > Section > Div > Div:last-child > Div:first-child{
+ display: flex;
+ margin-bottom: 1rem
+}
+Body > Footer > Section > Div > Div:last-child > Div:first-child > A{ width: 3.6rem; height: 3.6rem }
+Body > Footer > Section > Div > Div:last-child > Div:first-child > A:not(:last-child){ margin-right: 2.5rem }
+Body > Footer > Section > Div > Div:last-child > Div:first-child > A > Img{ height: 100%; width: auto }
+
+Body > Footer > Section > Div > Div:last-child > Div:last-child{ display: flex; flex-direction: column; justify-content: space-between;  align-items: flex-end }
+Body > Footer > Section > Div > Div:last-child > Div:last-child > A:first-child{ margin-bottom: 2rem }
+/* > */
+
+
+.width1{
+ margin: 0 auto;
+ width: 100%; max-width: var(--width-one)
+}
+
+
+
+@media all and (max-width: 1500px){
+ Body > Main > Section,
+ Body > Main > Article{ padding-right: 1rem; padding-left: 1rem }
+}
+@media all and (max-width: 800px){
+ Body > Header H1{ font-size: 7.6rem }
+}
+@media all and (max-width: 650px){
+ Body > Header{ padding: 4rem 1rem }
+ Body > Header H1{ font-size: 4rem }
+}
+@media all and (max-width: 600px){
+ Body > Footer > Section > Div{ flex-wrap: wrap }
+ Body > Footer > Section > Div > Div:first-child{
+  margin-right: 2rem;
+  width: 100%
+ }
+ Body > Footer > Section > Div > Div:last-child{ flex-direction: row }
+}
+@media all and (max-width: 520px){
+ Article H2{ font-size: 3.8rem }
+}
+@media all and (max-width: 460px){
+ Body > Footer > Section > Div > Div:last-child{ flex-direction: column }
+ Body > Footer > Section > Div > Div:first-child{ margin-right: 0 }
+}

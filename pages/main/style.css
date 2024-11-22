@@ -1,0 +1,62 @@
+Article > Section#description{ column-count: 3 }
+
+Article > Section#description Img{
+ margin: 1rem 0;
+ width: 100%
+}
+
+
+Article > Section#projects > Div{ display: flex; flex-wrap: wrap; justify-content: space-between }
+
+Article > Section#projects > Div > *{
+ display: flex;
+ margin-bottom: 1rem;
+ position: relative;
+ width: calc((100% - (1rem * 2)) / 3)
+}
+Article > Section#projects > Div > *:after{
+ background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.4));
+ content: '';
+ display: block;
+ position: absolute; top: 0; right: 0; bottom: 0; left: 0; z-index: 1
+}
+Article > Section#projects > Div > Div{ filter: grayscale(80%) }
+Article > Section#projects > Div > A{ overflow: hidden }
+
+Article > Section#projects > Div Img{
+ object-fit: cover; object-position: center center;
+ transition: var(--transition);
+ width: 100%
+}
+Article > Section#projects > Div > A:hover > Img{ transform: scale(1.1) }
+
+Article > Section#projects > Div H6{
+ color: white;
+ font-size: 2.6rem; font-weight: 600;
+ position: absolute; bottom: 2rem; left: 2rem; z-index: 2;
+ text-shadow: var(--shadow)
+}
+
+
+
+@media all and (max-width: 1120px){
+    Article > Section#projects > Div > *{
+        width: calc((100% - 1rem) / 2)
+    }
+}
+@media all and (max-width: 840px){
+    Article > Section#description{ column-count: 2 }
+}
+@media all and (max-width: 770px){
+    Article > Section#projects > Div > *{
+        width: 100%
+    }
+}
+@media all and (max-width: 640px){
+    Article > Section#description{ column-count: auto }
+}
+@media all and (max-width: 390px){
+    Article > Section#projects > Div H6{
+        font-size: 2rem;
+    }
+}

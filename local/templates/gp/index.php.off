@@ -1,0 +1,105 @@
+<?
+require("{$_SERVER['DOCUMENT_ROOT']}/bitrix/header.php");
+$APPLICATION->SetTitle('Генплан');
+?>
+
+<style>
+.scheme{
+ margin: 0 auto;
+ position: relative;
+ width: 738px; height: 393px;
+}
+.scheme svg{ position: absolute; top: 0; right: 0; bottom: 0; left: 0 }
+
+.scheme polygon{
+ cursor: pointer;
+ fill: #FFDBA4
+}
+.scheme polygon:hover,
+#hover{ fill: #ffc70b }
+.scheme polygon.active{ fill: #FF8C0B !important }
+
+
+.scheme-item{
+ cursor: pointer;
+ position: absolute
+}
+.scheme-name{
+ font-size: 10px; font-weight: bold;
+ line-height: 13px;
+ text-align: center;
+}
+.scheme-popup{ display: none;
+ background: white;
+ border: 1px solid #777;
+ box-shadow: 0 0 10px rgba(0,0,0,0.5);
+ padding: 10px;
+ position: absolute; z-index: 2;
+ font-size: 12px;
+ line-height: 14px;
+ text-align: left;
+ width: 200px
+}
+</style>
+
+<div class="scheme">
+ <img src="/demo/scheme.png" alt="">
+ <svg>  
+  <polygon data-id="1" points="52,270 93,305 151,305 151,364 137,364 52,342 17,311"></polygon>
+  <polygon data-id="2" points="92,224 123,252 123,302 93,302 53,268"></polygon>
+  <polygon data-id="3" points="137,169 168,197 124,249 93,223"></polygon>
+  ...
+ </svg>
+
+ <div class="scheme-item" data-id="1" style="top: 319px; left: 71px;">
+  <div class="scheme-name">Детский Мир</div>
+  <div class="scheme-popup">
+   Сеть магазинов «Детский мир» - крупнейший розничный оператор торговли 
+   детскими товарами и лидер рынка.
+  </div>
+ </div>
+ 
+ <div class="scheme-item" data-id="2" style="top: 255px; left: 84px;">
+  <div class="scheme-name">Триал<br>Спорт</div>
+  <div class="scheme-popup">
+   Сеть специализированных спортивных магазинов 
+   «Триал-Спорт». Снаряжение, одежда и аксессуары для активного отдыха и спорта!
+  </div>
+ </div>
+</div>
+
+<script>
+// Изменение цвета polygon когда мышка над названием магазина.
+$('.scheme-item').hover(
+ function(){ $('.scheme polygon[data-id=' + $(this).data('id') + ']').attr('id', 'hover'); },
+ function(){ $('.scheme polygon[data-id=' + $(this).data('id') + ']').attr('id', ''); }
+); 
+ 
+// Клик по названию магазина - открывается подсказка.
+$('.scheme-item').on('click', function(){
+ $('.scheme-popup').hide();
+ $('.scheme polygon').attr('class', '');
+ 
+ var popup = $(this).find('.scheme-popup');
+ $(popup).css('top', '-' + ($(popup).outerHeight(true) + 15) + 'px');
+ $(popup).css('left', '-' + (($(popup).outerWidth(true) / 2) - ($(this).outerWidth(true) / 2)) + 'px');
+ $('.scheme polygon[data-id=' + $(this).data('id') + ']').attr('class', 'active');
+ $(popup).show();
+});
+ 
+// Клик по полигону магазина - также открывается подсказка.
+$('.scheme polygon').click(function(){
+ $('.scheme-popup').hide();
+ $('.scheme-item[data-id=' + $(this).data('id') + ']').trigger('click');
+});
+ 
+// Клик вне магазинов все закрывает.
+$("body").click(function(e) {
+ if ($(e.target).closest(".scheme polygon, .scheme-item").length == 0) {
+  $(".scheme-popup").hide();
+  $('.scheme polygon').attr('class', '');
+ }
+});
+</script>
+
+<?require("{$_SERVER['DOCUMENT_ROOT']}/bitrix/footer.php");?>
